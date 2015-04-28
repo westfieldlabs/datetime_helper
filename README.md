@@ -10,7 +10,6 @@ A collection of useful utilities for projects that have to deal with dates, time
 
 1. `zulu_time` ActiveRecord model validator
 2. `in_zulu_time` ActiveModel::Serializer support method
-3. 
 
 ## TL;DR
 
