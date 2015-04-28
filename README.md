@@ -70,10 +70,15 @@ gem build westfield_datetime_helper.gemspec
 
 ```sh
 bundle install
-rspec
+rake
+```
+
+### with code coverage report
+
+```sh
+rake spec:rcov
 ```
 
 ## To contribute
 
-Contributions are welcome.  See the contribution instructions for the preferred contribution process.
-
+Contributions are welcome.  See the [contribution instructions](contributing.md) for the preferred contribution process.
