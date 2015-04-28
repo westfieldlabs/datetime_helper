@@ -10,9 +10,3 @@ task :gemspec do
 end
 
 RSpec::Core::RakeTask.new(:spec)
-
-namespace :spec do
-  RSpec::Core::RakeTask.new(:rcov) do |t|
-    t.rspec_opts=['-r simplecov']
-  end
-end
