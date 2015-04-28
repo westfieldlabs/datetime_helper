@@ -1,21 +1,6 @@
-if defined?(SimpleCov)
-  SimpleCov.start do
-    add_group 'Main', '/lib/'
-    add_filter "/spec/"
-  end
-end
-
 require 'westfield_datetime_helper'
 
-# Dir[File.expand_path("./support/**/*.rb",__FILE__)].each { |f| require f }
-
 RSpec.configure do |config|
-
-  config.include WestfieldLabs::DatetimeHelper::Matchers
-
-  # config.expect_with :rspec do |c|
-  #   c.syntax = :expect
-  # end
 
   # If no example or groups contains the filter symbol below, then run all
   config.run_all_when_everything_filtered = true
@@ -33,5 +18,7 @@ RSpec.configure do |config|
   config.color = true
   config.tty = true
   config.formatter = :documentation
+
+  config.include WestfieldLabs::DatetimeHelper::Matchers
 
 end

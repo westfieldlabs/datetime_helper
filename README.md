@@ -73,12 +73,6 @@ bundle install
 rake
 ```
 
-### with code coverage report
-
-```sh
-rake spec:rcov
-```
-
 ## To contribute
 
 Contributions are welcome.  See the [contribution instructions](contributing.md) for the preferred contribution process.
