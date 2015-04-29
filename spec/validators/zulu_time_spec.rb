@@ -59,4 +59,12 @@ describe WestfieldLabs::DatetimeHelper::Validators::ZuluTimeValidator do
       validator.validate_each(model, 'updated_at', utc_time)
     end
   end
+
+  context "given a String that's just nonsense" do
+    let(:nonsense) { "this makes no sense" }
+    it "is not accepted as valid" do
+      expect(model.errors[]).to receive('<<')
+      validator.validate_each(model, 'updated_at', nonsense)
+    end
+  end
 end
