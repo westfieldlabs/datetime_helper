@@ -3,7 +3,7 @@
 require 'time'
 require 'active_model'
 
-module WestfieldLabs
+module Labs
   module DatetimeHelper
     module Validators
       class ZuluTimeValidator < ActiveModel::EachValidator

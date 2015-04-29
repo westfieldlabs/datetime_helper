@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'westfield_datetime_helper/version'
+require 'datetime_helper/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "westfield_datetime_helper"
-  spec.version       = WestfieldLabs::DatetimeHelper::VERSION
+  spec.name          = "datetime_helper"
+  spec.version       = Labs::DatetimeHelper::VERSION
   spec.authors       = ["davesag"]
   spec.email         = ["davesag@gmail.com"]
   spec.summary       = "A collection of useful helpers for projects which have to deal with dates, times, and timezones."

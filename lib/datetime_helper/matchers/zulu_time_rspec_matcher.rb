@@ -1,4 +1,4 @@
-module WestfieldLabs
+module Labs
   module DatetimeHelper
     module Matchers
       

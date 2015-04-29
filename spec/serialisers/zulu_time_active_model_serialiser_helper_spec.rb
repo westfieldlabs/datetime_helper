@@ -1,8 +1,8 @@
 require_relative '../spec_helper'
-require "westfield_datetime_helper/active_model_serialiser"
+require "datetime_helper/active_model_serialiser"
 
 class TestSerialiser < ActiveModel::Serializer
-  extend WestfieldLabs::DatetimeHelper::Serialisers
+  extend Labs::DatetimeHelper::Serialisers
   attributes :updated_at
   
   enforce_zulu_time :updated_at
@@ -22,7 +22,7 @@ class TestItem < TestItemNoTime
   end
 end
 
-describe WestfieldLabs::DatetimeHelper::Serialisers do
+describe Labs::DatetimeHelper::Serialisers do
   let(:serialiser) { TestSerialiser.new(item) }
   subject          { serialiser.attributes }
 

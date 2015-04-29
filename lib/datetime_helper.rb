@@ -1,6 +1,6 @@
-require "westfield_datetime_helper/version"
+require "datetime_helper/version"
 
-module WestfieldLabs
+module Labs
   module DatetimeHelper
 
     ZULU_TIME_PATTERN = /^\d{4}-[0-1][0-9]-[0-3]\d{1}T[0-2]\d{1}:[0-5]\d{1}:[0-5]\d{1}Z$/

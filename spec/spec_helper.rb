@@ -1,4 +1,4 @@
-require 'westfield_datetime_helper/rspec'
+require 'datetime_helper/rspec'
 require 'pry'  # for debugging
 require 'time' # used all over the place
 
@@ -21,6 +21,6 @@ RSpec.configure do |config|
   config.tty = true
   config.formatter = :documentation
 
-  config.include WestfieldLabs::DatetimeHelper::Matchers
+  config.include Labs::DatetimeHelper::Matchers
 
 end

@@ -1,6 +1,6 @@
 # Enforces that a DateTime is serialised as zulu time
 
-module WestfieldLabs
+module Labs
   module DatetimeHelper
     module Serialisers
 
