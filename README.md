@@ -5,10 +5,10 @@ A collection of useful utilities for projects that have to deal with dates, time
 ### Current Status: Rspec Matchers done
 
 1. The `rspec` matcher `be_zulu_time` has been implemeted.
+2. The `zulu_time` `ActiveModel` validator has been implemented.
 
 #### Remaining to do
 
-1. `zulu_time` ActiveRecord model validator
 2. `in_zulu_time` ActiveModel::Serializer support method
 
 ## TL;DR
@@ -32,6 +32,8 @@ gem 'westfield_datetime_helper', git: "http://github.com/westfieldlabs/datetime_
 Put this in your `spec_helper.rb` or equivalent
 
 ```ruby
+require 'westfield_datetime_helper/rspec'
+
 RSpec.configure do |config|
   config.include WestfieldLabs::DatetimeHelper::Matchers
 end
@@ -47,13 +49,29 @@ it {expect(subject[:deleted_at]).to be_zulu_time}
 
 Put this in your model for datetime fields that must be stored as UTC+0
 
+First be sure you `require 'westfield_datetime_helper/active_model'`
+
+Then your model class can add:
+
 ```ruby
+include WestfieldLabs::DatetimeHelper::Validators
+
 validates :updated_at, zulu_time: true
+```
+
+This will verify that a `Time` is supplied at `UTC+0`, or that a `DateTime` has `.zone = "+00:00"`.
+
+You can also simply test a string to see if it is a Zulu Time string by
+
+```ruby
+WestffieldLabs::DatetimeHelper.is_zulu_time?(some_string)
 ```
 
 ### Enforcing serialised output formats
 
-Put this in your serialisers (assumes fields `updated_at`, and `deleted_at`)
+First be sure you `require 'westfield_datetime_helper/active_model'`
+
+Then you can put this in your serialisers (assumes fields `updated_at`, and `deleted_at`)
 
 ```ruby
 %w(updated_at deleted_at).each { |attribute| in_zulu_time attribute }
