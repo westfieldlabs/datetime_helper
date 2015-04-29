@@ -1,7 +1,7 @@
 require_relative '../spec_helper'
 require "datetime_helper/active_model"
 
-describe Labs::DatetimeHelper::Validators::ZuluTimeValidator do
+describe DatetimeHelper::Validators::ZuluTimeValidator do
   let(:validator) { described_class.new({attributes: [:updated_at]})}
   let(:model)     { double('model') }
   

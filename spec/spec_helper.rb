@@ -21,6 +21,6 @@ RSpec.configure do |config|
   config.tty = true
   config.formatter = :documentation
 
-  config.include Labs::DatetimeHelper::Matchers
+  config.include DatetimeHelper::Matchers
 
 end

@@ -2,16 +2,20 @@
 
 A collection of useful utilities for projects that have to deal with dates, times, and timezones, with a focus on rails projects that enforce the use of Zulu Time.
 
-### Current Status: Feature Complete
+## Features
 
-1. The `rspec` matcher `be_zulu_time` has been implemeted.
-2. The `zulu_time` `ActiveModel` validator has been implemented.
-2. `in_zulu_time` ActiveModel::Serializer helper method has been implemented.
+1. An `rspec` matcher called `be_zulu_time`,
+2. An `ActiveModel` validator called `zulu_time`, and
+3. An `ActiveModel::Serializer` helper method called `in_zulu_time`.
 
-#### Remaining to do
+Each feature can be required individually so you can use the `rspec` matcher, `ActiveModel` validtor, or `ActiveModel::Serializer` helper in isolation.
 
-1. Code review, and finalisation of the module names, class names, and file names
-2. Get `simplecov` working again
+## Requirements
+
+1. `Ruby`, `Bundler`, etc. The usual suspects.
+2. `rspec` if you `require 'datetime_helper/rspec'`
+3. `active_model` if you `require 'datetime_helper/active_model'`
+4. `active_model_serializers` if you `require 'datetime_helper/active_model_serialiser'`
 
 ## TL;DR
 
@@ -37,7 +41,7 @@ Put this in your `spec_helper.rb` or equivalent
 require 'datetime_helper/rspec'
 
 RSpec.configure do |config|
-  config.include Labs::DatetimeHelper::Matchers
+  config.include DatetimeHelper::Matchers
 end
 ```
 
@@ -56,7 +60,7 @@ First be sure you `require 'datetime_helper/active_model'`
 Then your model class can add:
 
 ```ruby
-include Labs::DatetimeHelper::Validators
+include DatetimeHelper::Validators
 
 validates :updated_at, zulu_time: true
 ```
@@ -66,7 +70,7 @@ This will verify that a `Time` is supplied at `UTC+0`, or that a `DateTime` has 
 You can also simply test a string to see if it is a Zulu Time string using
 
 ```ruby
-Labs::DatetimeHelper.is_zulu_time? "some_string"
+DatetimeHelper.is_zulu_time? "some_string"
 ```
 
 ### Enforcing `ActiveModel::Serializer`  Zulu Time string formats
@@ -76,7 +80,7 @@ First be sure you `require 'datetime_helper/active_model_serialisers'`
 Then you can put this in your serialisers:
 
 ```ruby
-extend Labs::DatetimeHelper::Serialisers
+extend DatetimeHelper::Serialisers
 
 in_zulu_time :updated_at
 ```
@@ -84,7 +88,7 @@ in_zulu_time :updated_at
 or if you have a bunch of 'em
 
 ```ruby
-extend Labs::DatetimeHelper::Serialisers
+extend DatetimeHelper::Serialisers
 
 %w(updated_at deleted_at).each { |attribute| in_zulu_time attribute }
 ```

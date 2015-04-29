@@ -2,7 +2,7 @@ require_relative '../spec_helper'
 require "datetime_helper/active_model_serialiser"
 
 class TestSerialiser < ActiveModel::Serializer
-  extend Labs::DatetimeHelper::Serialisers
+  extend DatetimeHelper::Serialisers
   attributes :updated_at
   
   enforce_zulu_time :updated_at
@@ -22,7 +22,7 @@ class TestItem < TestItemNoTime
   end
 end
 
-describe Labs::DatetimeHelper::Serialisers do
+describe DatetimeHelper::Serialisers do
   let(:serialiser) { TestSerialiser.new(item) }
   subject          { serialiser.attributes }
 

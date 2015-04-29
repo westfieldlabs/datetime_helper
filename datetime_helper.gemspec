@@ -5,7 +5,7 @@ require 'datetime_helper/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "datetime_helper"
-  spec.version       = Labs::DatetimeHelper::VERSION
+  spec.version       = DatetimeHelper::VERSION
   spec.authors       = ["davesag"]
   spec.email         = ["davesag@gmail.com"]
   spec.summary       = "A collection of useful helpers for projects which have to deal with dates, times, and timezones."
