@@ -1,15 +1,23 @@
-# The Westfield Datetime Helper
+# Datetime Helper
 
-A collection of useful utilities for projects that have to deal with dates, times, and timezones.
+A collection of useful utilities for projects that have to deal with dates, times, and timezones, with a focus on rails projects that enforce the use of Zulu Time.
 
-### Current Status: Rspec Matchers done
+## Features
 
-1. The `rspec` matcher `be_zulu_time` has been implemeted.
-2. The `zulu_time` `ActiveModel` validator has been implemented.
+1. An `rspec` matcher called `be_zulu_time`,
+2. An `ActiveModel` validator called `zulu_time`, and
+3. An `ActiveModel::Serializer` helper method called `in_zulu_time`.
 
-#### Remaining to do
+Each feature can be required individually so you can use the `rspec` matcher, `ActiveModel` validtor, or `ActiveModel::Serializer` helper in isolation.
 
-2. `in_zulu_time` ActiveModel::Serializer support method
+[![Build Status](https://travis-ci.org/westfieldlabs/datetime_helper.svg?branch=master)](https://travis-ci.org/westfieldlabs/datetime_helper)
+
+## Requirements
+
+1. `Ruby`, `Bundler`, etc. The usual suspects. (tested against Ruby 2.0.0 and up)
+2. `rspec` if you `require 'datetime_helper/rspec'`
+3. `active_model` if you `require 'datetime_helper/active_model'`
+4. `active_model_serializers` if you `require 'datetime_helper/active_model_serialiser'`
 
 ## TL;DR
 
@@ -17,25 +25,25 @@ Zulu Time is an ISO 8601 formatted string representing a `datetime` but in the t
 
 Enforcing Zulu Time across a range of projects requires a common approach to how you validate incoming strings, how you represent the data internally, how you serialise the data back out into strings, and how you test all that consistently and efficiently.
 
-`Datetime Helper` provides that common approach.
+`Datetime Helper` was developed to provide that common approach, and it is available as an open source project because we believe it is generically useful.
 
 ## To use
 
 Put this in your `Gemfile`
 
 ```ruby
-gem 'westfield_datetime_helper', git: "http://github.com/westfieldlabs/datetime_helper.git"
+gem 'datetime_helper', git: "http://github.com/westfieldlabs/datetime_helper.git"
 ```
 
-### In your `RSpec` tests
+### Using the `be_zulu_time` matcher in your `RSpec` tests
 
 Put this in your `spec_helper.rb` or equivalent
 
 ```ruby
-require 'westfield_datetime_helper/rspec'
+require 'datetime_helper/rspec'
 
 RSpec.configure do |config|
-  config.include WestfieldLabs::DatetimeHelper::Matchers
+  config.include DatetimeHelper::Matchers
 end
 ```
 
@@ -45,43 +53,55 @@ And put this in your `rspec` tests.
 it {expect(subject[:deleted_at]).to be_zulu_time}
 ```
 
-### Validating model fields
+### Validating `ActiveModel` fields to ensure they hold UTC+0 `date-time` data
 
 Put this in your model for datetime fields that must be stored as UTC+0
 
-First be sure you `require 'westfield_datetime_helper/active_model'`
+First be sure you `require 'datetime_helper/active_model'`
 
 Then your model class can add:
 
 ```ruby
-include WestfieldLabs::DatetimeHelper::Validators
+include DatetimeHelper::Validators
 
 validates :updated_at, zulu_time: true
 ```
 
-This will verify that a `Time` is supplied at `UTC+0`, or that a `DateTime` has `.zone = "+00:00"`.
+This will verify that a `Time` is supplied at `UTC+0`, or that a `DateTime` has `.zone == "+00:00"`.
 
-You can also simply test a string to see if it is a Zulu Time string by
+You can also simply test a string to see if it is a Zulu Time string using
 
 ```ruby
-WestffieldLabs::DatetimeHelper.is_zulu_time?(some_string)
+DatetimeHelper.is_zulu_time? "some_string"
 ```
 
-### Enforcing serialised output formats
+### Enforcing `ActiveModel::Serializer`  Zulu Time string formats
 
-First be sure you `require 'westfield_datetime_helper/active_model'`
+First be sure you `require 'datetime_helper/active_model_serialisers'`
 
-Then you can put this in your serialisers (assumes fields `updated_at`, and `deleted_at`)
+Then you can put this in your serialisers:
 
 ```ruby
+extend DatetimeHelper::Serialisers
+
+in_zulu_time :updated_at
+```
+
+or if you have a bunch of 'em
+
+```ruby
+extend DatetimeHelper::Serialisers
+
 %w(updated_at deleted_at).each { |attribute| in_zulu_time attribute }
 ```
+
+This will ensure that the serialised output is a proper Zulu Time formatted string.
 
 ## To build
 
 ```sh
 bundle install
-gem build westfield_datetime_helper.gemspec
+gem build datetime_helper.gemspec
 ```
 
 ## To test
@@ -90,6 +110,8 @@ gem build westfield_datetime_helper.gemspec
 bundle install
 rake
 ```
+
+The tests offer good insight into how to use these utilities.
 
 ## To contribute
 

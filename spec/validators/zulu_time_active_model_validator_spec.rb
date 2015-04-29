@@ -1,8 +1,7 @@
 require_relative '../spec_helper'
-require "westfield_datetime_helper/active_model"
-require 'time'
+require "datetime_helper/active_model"
 
-describe WestfieldLabs::DatetimeHelper::Validators::ZuluTimeValidator do
+describe DatetimeHelper::Validators::ZuluTimeValidator do
   let(:validator) { described_class.new({attributes: [:updated_at]})}
   let(:model)     { double('model') }
   
