@@ -69,11 +69,21 @@ WestffieldLabs::DatetimeHelper.is_zulu_time?(some_string)
 
 ### Enforcing serialised output formats
 
-First be sure you `require 'westfield_datetime_helper/active_model'`
+First be sure you `require 'westfield_datetime_helper/active_model_serialisers'`
 
 Then you can put this in your serialisers (assumes fields `updated_at`, and `deleted_at`)
 
 ```ruby
+extend WestfieldLabs::DatetimeHelper::Serialisers
+
+in_zulu_time :updated_at
+```
+
+or if you have a bunch of 'em
+
+```ruby
+extend WestfieldLabs::DatetimeHelper::Serialisers
+
 %w(updated_at deleted_at).each { |attribute| in_zulu_time attribute }
 ```
 
