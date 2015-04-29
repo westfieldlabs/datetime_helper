@@ -51,9 +51,11 @@ Put this in your model for datetime fields that must be stored as UTC+0
 
 First be sure you `require 'westfield_datetime_helper/active_model'`
 
-Then your model class can do this:
+Then your model class can add:
 
 ```ruby
+include WestfieldLabs::DatetimeHelper::Validators
+
 validates :updated_at, zulu_time: true
 ```
 
