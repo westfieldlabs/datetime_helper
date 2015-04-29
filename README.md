@@ -1,15 +1,17 @@
-# The Westfield Datetime Helper
+# Datetime Helper
 
-A collection of useful utilities for projects that have to deal with dates, times, and timezones.
+A collection of useful utilities for projects that have to deal with dates, times, and timezones, with a focus on rails projects that enforce the use of Zulu Time.
 
-### Current Status: Rspec Matchers done
+### Current Status: Feature Complete
 
 1. The `rspec` matcher `be_zulu_time` has been implemeted.
 2. The `zulu_time` `ActiveModel` validator has been implemented.
+2. `in_zulu_time` ActiveModel::Serializer helper method has been implemented.
 
 #### Remaining to do
 
-2. `in_zulu_time` ActiveModel::Serializer support method
+1. Code review, and finalisation of the module names, class names, and file names
+2. Get `simplecov` working again
 
 ## TL;DR
 
