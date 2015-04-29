@@ -1,6 +1,5 @@
 require_relative '../spec_helper'
 require "westfield_datetime_helper/active_model_serialiser"
-require 'time'
 
 class TestSerialiser < ActiveModel::Serializer
   extend WestfieldLabs::DatetimeHelper::Serialisers

@@ -1,5 +1,4 @@
 require_relative 'spec_helper'
-require 'time'
 
 describe WestfieldLabs::DatetimeHelper do
   describe '#is_zulu_time?' do

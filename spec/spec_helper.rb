@@ -1,5 +1,6 @@
 require 'westfield_datetime_helper/rspec'
-require 'pry'
+require 'pry'  # for debugging
+require 'time' # used all over the place
 
 RSpec.configure do |config|
 

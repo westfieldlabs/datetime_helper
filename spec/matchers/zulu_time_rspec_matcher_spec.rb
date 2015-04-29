@@ -1,5 +1,4 @@
 require_relative '../spec_helper'
-require 'time'
 
 describe 'be_zulu_time' do
   context 'given a valid zulu time string' do
