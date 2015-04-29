@@ -10,9 +10,11 @@ A collection of useful utilities for projects that have to deal with dates, time
 
 Each feature can be required individually so you can use the `rspec` matcher, `ActiveModel` validtor, or `ActiveModel::Serializer` helper in isolation.
 
+[![Build Status](https://travis-ci.org/westfieldlabs/datetime_helper.svg?branch=master)](https://travis-ci.org/westfieldlabs/datetime_helper)
+
 ## Requirements
 
-1. `Ruby`, `Bundler`, etc. The usual suspects.
+1. `Ruby`, `Bundler`, etc. The usual suspects. (tested against Ruby 2.0.0 and up)
 2. `rspec` if you `require 'datetime_helper/rspec'`
 3. `active_model` if you `require 'datetime_helper/active_model'`
 4. `active_model_serializers` if you `require 'datetime_helper/active_model_serialiser'`
