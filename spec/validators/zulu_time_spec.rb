@@ -1,6 +1,5 @@
 require_relative '../spec_helper'
 require 'time'
-require 'pry'
 
 describe WestfieldLabs::DatetimeHelper::Validators::ZuluTimeValidator do
   let(:validator) { described_class.new({attributes: [:updated_at]})}
