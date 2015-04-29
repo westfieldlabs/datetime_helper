@@ -5,10 +5,10 @@ A collection of useful utilities for projects that have to deal with dates, time
 ### Current Status: Rspec Matchers done
 
 1. The `rspec` matcher `be_zulu_time` has been implemeted.
+2. The `zulu_time` `ActiveModel` validator has been implemented.
 
 #### Remaining to do
 
-1. `zulu_time` ActiveRecord model validator
 2. `in_zulu_time` ActiveModel::Serializer support method
 
 ## TL;DR
@@ -50,6 +50,10 @@ Put this in your model for datetime fields that must be stored as UTC+0
 ```ruby
 validates :updated_at, zulu_time: true
 ```
+
+This will verify that a `Time` is supplied at UTC+0,
+or that a `DateTime` has `.zone = "+00:00"`,
+or that a `String` is formatted in ISO-8601 Zulu Time.
 
 ### Enforcing serialised output formats
 
