@@ -59,9 +59,13 @@ include WestfieldLabs::DatetimeHelper::Validators
 validates :updated_at, zulu_time: true
 ```
 
-This will verify that a `Time` is supplied at UTC+0,
-or that a `DateTime` has `.zone = "+00:00"`,
-or that a `String` is formatted in ISO-8601 Zulu Time.
+This will verify that a `Time` is supplied at `UTC+0`, or that a `DateTime` has `.zone = "+00:00"`.
+
+You can also simply test a string to see if it is a Zulu Time string by
+
+```ruby
+WestffieldLabs::DatetimeHelper.is_zulu_time?(some_string)
+```
 
 ### Enforcing serialised output formats
 

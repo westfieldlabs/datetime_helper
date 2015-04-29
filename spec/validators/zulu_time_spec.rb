@@ -44,23 +44,7 @@ describe WestfieldLabs::DatetimeHelper::Validators::ZuluTimeValidator do
     end
   end
 
-  context "given a Zulu Time formatted String" do
-    let(:zulu_time) { Time.now.utc.iso8601 }
-    it "is accepted as valid" do
-      expect(model.errors[]).to_not receive('<<')
-      validator.validate_each(model, 'updated_at', zulu_time)
-    end
-  end
-
-  context "given an ISO8601 formatted String that's not at UTC+0" do
-    let(:utc_time) { Time.now.iso8601 }
-    it "is not accepted as valid" do
-      expect(model.errors[]).to receive('<<')
-      validator.validate_each(model, 'updated_at', utc_time)
-    end
-  end
-
-  context "given a String that's just nonsense" do
+  context "given a String instead of a Time or DateTime" do
     let(:nonsense) { "this makes no sense" }
     it "is not accepted as valid" do
       expect(model.errors[]).to receive('<<')
