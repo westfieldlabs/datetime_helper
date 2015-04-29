@@ -32,6 +32,8 @@ gem 'westfield_datetime_helper', git: "http://github.com/westfieldlabs/datetime_
 Put this in your `spec_helper.rb` or equivalent
 
 ```ruby
+require 'westfield_datetime_helper/rspec'
+
 RSpec.configure do |config|
   config.include WestfieldLabs::DatetimeHelper::Matchers
 end
@@ -47,6 +49,10 @@ it {expect(subject[:deleted_at]).to be_zulu_time}
 
 Put this in your model for datetime fields that must be stored as UTC+0
 
+First be sure you `require 'westfield_datetime_helper/active_model'`
+
+Then your model class can do this:
+
 ```ruby
 validates :updated_at, zulu_time: true
 ```
@@ -57,7 +63,9 @@ or that a `String` is formatted in ISO-8601 Zulu Time.
 
 ### Enforcing serialised output formats
 
-Put this in your serialisers (assumes fields `updated_at`, and `deleted_at`)
+First be sure you `require 'westfield_datetime_helper/active_model'`
+
+Then you can put this in your serialisers (assumes fields `updated_at`, and `deleted_at`)
 
 ```ruby
 %w(updated_at deleted_at).each { |attribute| in_zulu_time attribute }

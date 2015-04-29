@@ -1,4 +1,5 @@
 require_relative '../spec_helper'
+require "westfield_datetime_helper/active_model"
 require 'time'
 
 describe WestfieldLabs::DatetimeHelper::Validators::ZuluTimeValidator do

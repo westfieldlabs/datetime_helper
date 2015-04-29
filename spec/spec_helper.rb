@@ -1,4 +1,4 @@
-require 'westfield_datetime_helper'
+require 'westfield_datetime_helper/rspec'
 require 'pry'
 
 RSpec.configure do |config|
