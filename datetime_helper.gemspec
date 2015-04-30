@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = DatetimeHelper::VERSION
   spec.authors       = ["davesag"]
   spec.email         = ["davesag@gmail.com"]
-  spec.summary       = "A collection of useful helpers for projects which have to deal with dates, times, and timezones."
-  spec.description   = "Enforcing Zulu Time across a range of projects requires a common approach to how you validate incoming strings, how you represent the data internally, how you serialise the data back out into strings, and how you test all that consistently and efficiently. The Datetime Helpers provide that common approach."
+  spec.summary       = "A collection of useful helpers for projects which have to deal with dates, times, and time zones."
+  spec.description   = "The `Datetime Helper` was developed to provide a common approach to validating incoming strings, representing the data internally, serialising the data back out into strings, and testing date and time fields."
   spec.homepage      = "https://github.com/westfieldlabs/datetime_helper"
   spec.license       = "Apache 2.0"
 
