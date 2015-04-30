@@ -1,4 +1,4 @@
-# Datetime Helper
+# The Datetime Helper
 
 A collection of useful utilities for projects that have to deal with dates, times, and time zones, with particular utility for Rails projects that enforce the use of Zulu Time.
 
@@ -118,7 +118,7 @@ Contributions are encouraged. See the [contribution instructions](contributing.m
 
 ## License
 
-The `datetime_helper` is © 2015 Westfield Labs and is available for use under the [Apache 2.0](LICENSE) license.
+The `Datetime Helper` is © 2015 Westfield Labs and is available for use under the [Apache 2.0](LICENSE) license.
 
 ## Version history
 
