@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary       = "A collection of useful helpers for projects which have to deal with dates, times, and timezones."
   spec.description   = "Enforcing Zulu Time across a range of projects requires a common approach to how you validate incoming strings, how you represent the data internally, how you serialise the data back out into strings, and how you test all that consistently and efficiently. The Datetime Helpers provide that common approach."
   spec.homepage      = "https://github.com/westfieldlabs/datetime_helper"
-  spec.license       = "MIT"
+  spec.license       = "Apache 2.0"
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
