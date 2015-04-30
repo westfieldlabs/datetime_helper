@@ -1,6 +1,6 @@
 # Datetime Helper
 
-A collection of useful utilities for projects that have to deal with dates, times, and timezones, with a focus on rails projects that enforce the use of Zulu Time.
+A collection of useful utilities for projects that have to deal with dates, times, and time zones, with particular utility for Rails projects that enforce the use of Zulu Time.
 
 ## Features
 
@@ -8,7 +8,7 @@ A collection of useful utilities for projects that have to deal with dates, time
 2. An `ActiveModel` validator called `zulu_time`, and
 3. An `ActiveModel::Serializer` helper method called `in_zulu_time`.
 
-Each feature can be required individually so you can use the `rspec` matcher, `ActiveModel` validtor, or `ActiveModel::Serializer` helper in isolation.
+Each feature can be required individually so you can use the `rspec` matcher, `ActiveModel` validator, or `ActiveModel::Serializer` helper in isolation.
 
 [![Build Status](https://travis-ci.org/westfieldlabs/datetime_helper.svg?branch=master)](https://travis-ci.org/westfieldlabs/datetime_helper)
 
@@ -21,7 +21,7 @@ Each feature can be required individually so you can use the `rspec` matcher, `A
 
 ## TL;DR
 
-Zulu Time is an ISO 8601 formatted string representing a `datetime` but in the time zone UTC+0. This makes it trivial for client applications to display correctly in their local, or other nominated time zones.
+Zulu Time is an ISO 8601 formatted string representing a `datetime` but in the time zone UTC+0. This makes it trivial for client applications to display dates and times correctly in their local, or other nominated time zones.
 
 Enforcing Zulu Time across a range of projects requires a common approach to how you validate incoming strings, how you represent the data internally, how you serialise the data back out into strings, and how you test all that consistently and efficiently.
 
@@ -32,7 +32,7 @@ Enforcing Zulu Time across a range of projects requires a common approach to how
 Put this in your `Gemfile`
 
 ```ruby
-gem 'datetime_helper', git: "http://github.com/westfieldlabs/datetime_helper.git"
+gem 'datetime_helper'
 ```
 
 ### Using the `be_zulu_time` matcher in your `RSpec` tests
@@ -53,9 +53,9 @@ And put this in your `rspec` tests.
 it {expect(subject[:deleted_at]).to be_zulu_time}
 ```
 
-### Validating `ActiveModel` fields to ensure they hold UTC+0 `date-time` data
+### Validating `ActiveModel` fields to ensure they hold UTC+0 `datetime` data
 
-Put this in your model for datetime fields that must be stored as UTC+0
+Put this in your model for `datetime` fields that must be stored as UTC+0
 
 First be sure you `require 'datetime_helper/active_model'`
 
@@ -111,7 +111,20 @@ bundle install
 rake
 ```
 
-The tests offer good insight into how to use these utilities.
+The tests offer insight into how to use these utilities.
+
+## License
+
+The `datetime_helper` is © 2015 Westfield Labs and is available for use under the [MIT License](LICENSE).
+
+## Version history
+
+|Version| Comments                                   |
+|:------|:-------------------------------------------|
+|`0.0.1`| First draft — only the rspec matcher       |
+|`0.0.2`| Added the `ActiveModel` validator          |
+|`0.0.3`| Added the `ActiveModel::Serializer` helper |
+|`1.0.0`| Cleaned up for first official release      |
 
 ## To contribute
 
