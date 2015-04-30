@@ -2,8 +2,13 @@ require_relative '../spec_helper'
 require "datetime_helper/active_model"
 
 describe DatetimeHelper::Validators::ZuluTimeValidator do
-  let(:validator) { described_class.new({attributes: [:updated_at]})}
-  let(:model)     { double('model') }
+  let(:validator)      { described_class.new({attributes: [:updated_at]})}
+  let(:model)          { double('model') }
+
+  # if, by chance, you happen to be running these tests
+  # on a machine set to UTC+0 then the local time tests
+  # won't really be a valid test.
+  let(:already_in_utc) { Time.now.utc == Time.now.getlocal }
   
   before :each do
     allow(model).to receive_message_chain('errors').and_return([])
@@ -22,6 +27,7 @@ describe DatetimeHelper::Validators::ZuluTimeValidator do
   context "given a local Time" do
     let(:invalid_time) { Time.now.getlocal }
     it "is not accepted as valid" do
+      pending "Local Time is UTC so skipping test" if already_in_utc
       expect(model.errors[]).to receive('<<')
       validator.validate_each(model, 'updated_at', invalid_time)
     end
@@ -38,6 +44,7 @@ describe DatetimeHelper::Validators::ZuluTimeValidator do
   context "given a local DateTime" do
     let(:invalid_time) { DateTime.now }
     it "is not accepted as valid" do
+      pending "Local Time is UTC so skipping test" if already_in_utc
       expect(model.errors[]).to receive('<<')
       validator.validate_each(model, 'updated_at', invalid_time)
     end
