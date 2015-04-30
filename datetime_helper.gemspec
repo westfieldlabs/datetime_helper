@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["davesag"]
   spec.email         = ["davesag@gmail.com"]
   spec.summary       = "A collection of useful helpers for projects which have to deal with dates, times, and time zones."
-  spec.description   = "The `Datetime Helper` was developed to provide a common approach to validating incoming strings, representing the data internally, serialising the data back out into strings, and testing date and time fields."
+  spec.description   = "The `Datetime Helper` was developed to provide a common approach to validating incoming datetime data, representing that data internally, serialising it back out into strings, and testing of date and time fields."
   spec.homepage      = "https://github.com/westfieldlabs/datetime_helper"
   spec.license       = "Apache 2.0"
 
