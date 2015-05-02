@@ -1,6 +1,6 @@
 # The Datetime Helper
 
-A collection of useful utilities for projects that have to deal with dates, times, and time zones, with particular utility for Rails projects that enforce the use of Zulu Time.
+A collection of useful utilities for Ruby projects that have to deal with dates, times, and time zones, with particular utility for Rails projects that enforce the use of Zulu Time.
 
 ## Features
 
