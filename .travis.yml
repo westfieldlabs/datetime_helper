@@ -11,3 +11,9 @@ rvm:
 before_install:
 - gem install bundler
 - export TZ=Australia/Canberra
+deploy:
+  provider: rubygems
+  api_key:
+    secure: FZVmAZ6QMTUCZU4Iogf3J+                                                                                                             DgVyqZMi353GaG1wecIejOgsZd5mcZu7j0AS2OFcU9gvoq28DG3v0aM70KoFqGIgcxPoP2Y84B6USK3rpVxGxudcj6yXuVLqvLWv2l47oUTVU5Z71GL42m6UchYub23eVkZoyVTuzKUzxQ3P9nMNg=
+  on:
+    tags: true
