@@ -36,10 +36,13 @@ Put this in your `Gemfile`
 gem 'datetime_helper'
 ```
 
-### Testing a string to see if it is a Zulu Time formatted string
+### Basic Zulu Time checking
+
+You can also use this to test that a `DateTime`, or `Time`, are at `UTC+0`, or
+that a `String` is formatted in correct Zulu Time format.
 
 ```ruby
-DatetimeHelper.is_zulu_time? "some_string"
+DatetimeHelper.is_zulu_time? something
 ```
 
 ### Using the `be_zulu_time` matcher in your `RSpec` tests
@@ -60,6 +63,8 @@ And put this in your `rspec` tests.
 it {expect(subject[:deleted_at]).to be_zulu_time}
 ```
 
+This can be used to expect that a `DateTime`, or `Time`, are at `UTC+0`, or that a `String` is formatted in Zulu Time.
+
 ### Validating `ActiveModel` fields to ensure they hold UTC+0 `datetime` data
 
 First be sure you `require 'datetime_helper/active_model'`
@@ -72,7 +77,9 @@ include DatetimeHelper::Validators
 validates :updated_at, zulu_time: true
 ```
 
-This will verify that a `Time` is supplied at `UTC+0`, or that a `DateTime` has `.zone == "+00:00"`.
+This will verify that a `Time` is supplied at `UTC+0`,
+or that a `DateTime` has `.zone == "+00:00"`,
+or that a `String` is in Zulu Time format.
 
 ### Enforcing `ActiveModel::Serializer`  Zulu Time string formats
 
@@ -122,9 +129,10 @@ The `Datetime Helper` is © 2015 Westfield Labs and is available for use under t
 
 ## Version history
 
-|Version| Comments                                   |
-|:------|:-------------------------------------------|
-|`0.0.1`| First draft — only the rspec matcher       |
-|`0.0.2`| Added the `ActiveModel` validator          |
-|`0.0.3`| Added the `ActiveModel::Serializer` helper |
-|`1.0.0`| Cleaned up for first official release      |
+|Version| Comments                                        |
+|:------|:------------------------------------------------|
+|`0.0.1`| First draft — only the rspec matcher            |
+|`0.0.2`| Added the `ActiveModel` validator               |
+|`0.0.3`| Added the `ActiveModel::Serializer` helper      |
+|`1.0.0`| Cleaned up for first official release           |
+|`1.0.1`| Widened the scope of the matcher, and validator |
