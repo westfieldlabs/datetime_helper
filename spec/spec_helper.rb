@@ -16,11 +16,6 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = 'random'
 
-  # Hi I'm Dave I like pretty colours.
-  config.color = true
-  config.tty = true
-  config.formatter = :documentation
-
   config.include DatetimeHelper::Matchers
 
 end
