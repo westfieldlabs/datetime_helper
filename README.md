@@ -5,7 +5,7 @@ A collection of useful utilities for projects that have to deal with dates, time
 ## Features
 
 1. A base method called `is_zulu_time?`, 
-2. An `rspec` matcher called `be_zulu_time`,
+2. `rspec` matchers `be_zulu_time`, `be_an_iso_formatted_date`, and `be_an_iso_formatted_time`
 3. An `ActiveModel` validator called `zulu_time`, and
 4. An `ActiveModel::Serializer` helper method called `enforce_zulu_time`.
 
@@ -18,7 +18,7 @@ Each feature can be required individually so you can use the `rspec` matcher, `A
 1. `Ruby`, `Bundler`, etc. The usual suspects. (Tested against Ruby 2.0.0 and up)
 2. `rspec` if you `require 'datetime_helper/rspec'`
 3. `active_model` if you `require 'datetime_helper/active_model'`
-4. `active_model_serializers` if you `require 'datetime_helper/active_model_serialiser'`
+4. `active_model_serializer` if you `require 'datetime_helper/active_model_serialiser'`
 
 ## TL;DR
 
@@ -36,10 +36,13 @@ Put this in your `Gemfile`
 gem 'datetime_helper'
 ```
 
-### Testing a string to see if it is a Zulu Time formatted string
+### Basic Zulu Time checking
+
+You can also use this to test that a `DateTime`, or `Time`, are at `UTC+0`, or
+that a `String` is formatted in correct Zulu Time format.
 
 ```ruby
-DatetimeHelper.is_zulu_time? "some_string"
+DatetimeHelper.is_zulu_time? something
 ```
 
 ### Using the `be_zulu_time` matcher in your `RSpec` tests
@@ -60,6 +63,15 @@ And put this in your `rspec` tests.
 it {expect(subject[:deleted_at]).to be_zulu_time}
 ```
 
+This can be used to expect that a `DateTime`, or `Time`, are at `UTC+0`, or that a `String` is formatted in Zulu Time.
+
+#### ISO Times and Dates
+
+Similarly to the above you can also test Time and Date strings with
+
+* `be_an_iso_formatted_time`, and
+* `be_an_iso_formatted_date`
+
 ### Validating `ActiveModel` fields to ensure they hold UTC+0 `datetime` data
 
 First be sure you `require 'datetime_helper/active_model'`
@@ -72,7 +84,9 @@ include DatetimeHelper::Validators
 validates :updated_at, zulu_time: true
 ```
 
-This will verify that a `Time` is supplied at `UTC+0`, or that a `DateTime` has `.zone == "+00:00"`.
+This will verify that a `Time` is supplied at `UTC+0`,
+or that a `DateTime` has `.zone == "+00:00"`,
+or that a `String` is in Zulu Time format.
 
 ### Enforcing `ActiveModel::Serializer`  Zulu Time string formats
 
@@ -128,3 +142,4 @@ The `Datetime Helper` is © 2015 Westfield Labs and is available for use under t
 |`0.0.2`| Added the `ActiveModel` validator          |
 |`0.0.3`| Added the `ActiveModel::Serializer` helper |
 |`1.0.0`| Cleaned up for first official release      |
+|`1.0.1`| Enhanced matchers, and validator           |
