@@ -7,7 +7,7 @@ A collection of useful utilities for projects that have to deal with dates, time
 1. A base method called `is_zulu_time?`, 
 2. An `rspec` matcher called `be_zulu_time`,
 3. An `ActiveModel` validator called `zulu_time`, and
-4. An `ActiveModel::Serializer` helper method called `in_zulu_time`.
+4. An `ActiveModel::Serializer` helper method called `enforce_zulu_time`.
 
 Each feature can be required individually so you can use the `rspec` matcher, `ActiveModel` validator, or `ActiveModel::Serializer` helper in isolation.
 
@@ -76,14 +76,14 @@ This will verify that a `Time` is supplied at `UTC+0`, or that a `DateTime` has 
 
 ### Enforcing `ActiveModel::Serializer`  Zulu Time string formats
 
-First be sure you `require 'datetime_helper/active_model_serialisers'`
+First be sure you `require 'datetime_helper/active_model_serialiser'`
 
 Then you can put this in your serialisers:
 
 ```ruby
 extend DatetimeHelper::Serialisers
 
-in_zulu_time :updated_at
+enforce_zulu_time :updated_at
 ```
 
 or if you have a bunch of 'em
@@ -91,7 +91,7 @@ or if you have a bunch of 'em
 ```ruby
 extend DatetimeHelper::Serialisers
 
-%w(updated_at deleted_at).each { |attribute| in_zulu_time attribute }
+%w(updated_at deleted_at).each { |attribute| enforce_zulu_time attribute }
 ```
 
 This will ensure that the serialised output is a proper Zulu Time formatted string.
