@@ -4,7 +4,7 @@ A collection of useful utilities for projects that have to deal with dates, time
 
 ## Features
 
-1. A base method called `is_zulu_time?`, 
+1. A base method called `is_zulu_time?`,
 2. `rspec` matchers `be_zulu_time`, `be_an_iso_formatted_date`, and `be_an_iso_formatted_time`
 3. An `ActiveModel` validator called `zulu_time`, and
 4. An `ActiveModel::Serializer` helper method called `enforce_zulu_time`.
@@ -88,7 +88,7 @@ This will verify that a `Time` is supplied at `UTC+0`,
 or that a `DateTime` has `.zone == "+00:00"`,
 or that a `String` is in Zulu Time format.
 
-### Enforcing `ActiveModel::Serializer`  Zulu Time string formats
+### Enforcing `ActiveModel::Serializer`  Zulu Time and iso8601 Date String Formats
 
 First be sure you `require 'datetime_helper/active_model_serialiser'`
 
@@ -98,6 +98,7 @@ Then you can put this in your serialisers:
 extend DatetimeHelper::Serialisers
 
 enforce_zulu_time :updated_at
+enforce_iso8601_date :enable_date
 ```
 
 or if you have a bunch of 'em
@@ -106,9 +107,11 @@ or if you have a bunch of 'em
 extend DatetimeHelper::Serialisers
 
 %w(updated_at deleted_at).each { |attribute| enforce_zulu_time attribute }
+%w(date enable_date).each { |attribute| enforce_iso8601_date attribute }
 ```
 
-This will ensure that the serialised output is a proper Zulu Time formatted string.
+This will ensure that the serialised output is a proper Zulu time formatted
+string and iso8601 formatted date string.
 
 ## To build
 
@@ -143,3 +146,4 @@ The `Datetime Helper` is © 2015 Westfield Labs and is available for use under t
 |`0.0.3`| Added the `ActiveModel::Serializer` helper |
 |`1.0.0`| Cleaned up for first official release      |
 |`1.0.1`| Enhanced matchers, and validator           |
+|`1.0.2`| Add iso8601 date format for serializers    |
