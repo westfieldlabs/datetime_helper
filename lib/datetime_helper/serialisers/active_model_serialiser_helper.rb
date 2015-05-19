@@ -11,7 +11,7 @@ module DatetimeHelper
     # Enforces that a Date is serialized as iso8601 format
     def enforce_iso8601_date(attribute)
       define_method(attribute) do
-        object.send(attribute).iso8601 unless object.send(attribute).nil?
+        object.send(attribute).strftime('%F') unless object.send(attribute).nil?
       end
     end
 
