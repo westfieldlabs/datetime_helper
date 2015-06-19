@@ -3,11 +3,14 @@ require "datetime_helper/active_model_serialiser"
 
 class TestSerialiser < ActiveModel::Serializer
   extend DatetimeHelper::Serialisers
-  attributes :updated_at, :enabled_date, :enabled_time
+  attributes :updated_at, :enabled_date, :enabled_time,
+    :aliased_time, :aliased_date
 
   enforce_zulu_time :updated_at
   enforce_iso8601_date :enabled_date
   enforce_iso8601_date :enabled_time
+  enforce_zulu_time :aliased_time, :updated_at
+  enforce_iso8601_date :aliased_date, :enabled_date
 end
 
 class TestItemNoTime
@@ -35,27 +38,32 @@ describe DatetimeHelper::Serialisers do
   context 'with a UTC time' do
     let(:item)     { TestItem.new }
     it { expect(subject[:updated_at]).to be_zulu_time }
+    it { expect(subject[:aliased_time]).to eq subject[:updated_at] }
   end
 
   context 'with a local time' do
     let(:item)     { TestItem.new updated_at: Time.now.getlocal }
     it { expect(subject[:updated_at]).to be_zulu_time }
+    it { expect(subject[:aliased_time]).to eq subject[:updated_at] }
   end
 
   context 'with a nil time' do
     let(:item)     { TestItemNoTime.new }
     it { expect(subject[:updated_at]).to be_nil}
+    it { expect(subject[:aliased_time]).to eq subject[:updated_at] }
   end
 
   context 'with a date' do
     let(:item)     { TestItem.new }
 
     it { expect(subject[:enabled_date]).to be_an_iso_formatted_date }
+    it { expect(subject[:aliased_date]).to eq subject[:enabled_date] }
   end
 
   context 'with a nil date' do
     let(:item)     { TestItemNoTime.new }
     it { expect(subject[:enabled_date]).to be_nil}
+    it { expect(subject[:aliased_date]).to eq subject[:enabled_date] }
   end
 
   context 'with a date-time' do
