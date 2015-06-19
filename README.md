@@ -7,7 +7,7 @@ A collection of useful utilities for projects that have to deal with dates, time
 1. A base method called `is_zulu_time?`,
 2. `rspec` matchers `be_zulu_time`, `be_an_iso_formatted_date`, and `be_an_iso_formatted_time`
 3. An `ActiveModel` validator called `zulu_time`, and
-4. An `ActiveModel::Serializer` helper method called `enforce_zulu_time` and `enforce_iso8601_date` that allow formatting and aliasing.
+4. `ActiveModel::Serializer` helper methods called `enforce_zulu_time` and `enforce_iso8601_date` that allow formatting and aliasing.
 
 Each feature can be required individually so you can use the `rspec` matcher, `ActiveModel` validator, or `ActiveModel::Serializer` helper in isolation.
 
