@@ -2,7 +2,7 @@ require "datetime_helper/version"
 
 module DatetimeHelper
 
-  ZULU_TIME_PATTERN = /^(\d{4})-([0-1][0-9])-([0-3]\d{1})T([0-2]\d{1}):([0-5]\d{1}):([0-5]\d{1})(\.[0-9]{1,3})?Z$/
+  ZULU_TIME_PATTERN = /^(\d{4})-([0-1][0-9])-([0-3]\d{1})T([0-2]\d{1}):([0-5]\d{1}):([0-5]\d{1})((\.[0-9]{1,3})?(Z|\+00:00))$/
 
   class << self
     def is_zulu_time?(something)
