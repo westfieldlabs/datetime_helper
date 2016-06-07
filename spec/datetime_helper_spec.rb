@@ -8,6 +8,12 @@ describe DatetimeHelper do
       it { expect(DatetimeHelper.is_zulu_time?(valid_string)).to eq true }
     end
 
+    context "given a valid Zulu Datetime string" do
+      let(:valid_string) { DateTime.now.new_offset(0).iso8601 }
+      it { expect{ Time.parse(valid_string)}.to_not raise_error }
+      it { expect(DatetimeHelper.is_zulu_time?(valid_string)).to eq true }
+    end
+
     context "given a valid ISO 8601 string that's not Zulu Time" do
       let(:invalid_string) { Time.now.iso8601 }
       it { expect{ Time.parse(invalid_string)}.to_not raise_error }
